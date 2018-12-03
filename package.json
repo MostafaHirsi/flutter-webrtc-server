@@ -34,9 +34,7 @@
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "ws": "^5.2.1"
-  },
-  "devDependencies": {
+    "ws": "^5.2.1",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-polyfill": "^6.26.0",
