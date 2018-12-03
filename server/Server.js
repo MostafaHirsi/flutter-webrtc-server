@@ -32,7 +32,7 @@ export default class CallHandler {
             cert: fs.readFileSync('certs/cert.pem')
         };
 
-        var wss_server_port = (process.env.PORT + 1 || 4443);
+        var wss_server_port = (parseInt(process.env.PORT, 10) + 1 || 4443);
         this.ssl_server = https.createServer(options, app).listen(wss_server_port, () => {
             console.log("Start WSS Server: bind => wss://0.0.0.0:"+wss_server_port);
         });
