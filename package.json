@@ -4,11 +4,11 @@
   "description": "webapp",
   "main": "index.js",
   "scripts": {
-    "start": "npm-run-all --parallel run-server run-webpack-dev-server",
+    "start": "npm-run-all --parallel run-server build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "run-server": "node server/index.js",
     "run-webpack-dev-server": "webpack-dev-server --mode development --https --cert ./certs/cert.pem --key ./certs/key.pem --hot --inline --progress --colors --watch --compress --content-base ./dist  --port 8086 --host 0.0.0.0",
-    "build": "webpack --mode production --progress --colors --config ./webpack.config.js"
+    "build": "webpack --mode production --progress --colors --config ./webpack.config.js --https --cert ./certs/cert.pem --key ./certs/key.pem --hot --inline --progress --colors --watch --compress --content-base ./dist  --port 8086 --host 0.0.0.0"
   },
   "repository": {
     "type": "git",
