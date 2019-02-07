@@ -4,6 +4,11 @@ import fs from 'fs';
 import ws from 'ws';
 import http from 'http';
 import https from 'https';
+// require('@google-cloud/debug-agent').start();
+
+// import logger from '@google-cloud/debug-agent';
+
+// logger();
 
 export default class CallHandler {
 
@@ -26,11 +31,22 @@ export default class CallHandler {
         this.ws = new ws.Server({ server: this.server });
         this.ws.on('connection', this.onConnection);
 
-
         var options = {
-            key: fs.readFileSync('certs/key.pem'),
-            cert: fs.readFileSync('certs/cert.pem')
+            key: fs.readFileSync('certs/mykey.pem'),
+            cert: fs.readFileSync('certs/mycertificate.pem')
         };
+        // var options = {
+        //     key: fs.readFileSync('certs/my_key.pem'),
+        //     cert: fs.readFileSync('certs/my_cert.pem')
+        // };
+        // const options = {
+        //     pfx: fs.readFileSync('certs/domain.pfx'),
+        //     passphrase: ''
+        //   };
+          
+
+
+        console.log(options);
 
         var wss_server_port = (parseInt(process.env.PORT, 10) + 1 || 4443);
         this.ssl_server = https.createServer(options, app).listen(wss_server_port, () => {
@@ -39,6 +55,10 @@ export default class CallHandler {
 
         this.wss = new ws.Server({ server: this.ssl_server });
         this.wss.on('connection', this.onConnection);
+
+
+        console.log(`ws running on port : ${process.env.PORT}`);
+        console.log(`wss running on port : ${process.env.PORT}`);
     }
 
     updatePeers = () => {
@@ -252,6 +272,8 @@ export default class CallHandler {
         });
     }
 }
+
+
 
 let callHandler = new CallHandler();
 callHandler.init();
