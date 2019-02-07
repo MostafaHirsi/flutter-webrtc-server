@@ -1,0 +1,6 @@
+
+api/bin
+api/obj
+.cache
+node_modules/
+dist/
